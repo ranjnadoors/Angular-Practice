@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<!--------------------------------------------form validations-------------------------------->
+<div class="container">
+    <form [formGroup]="register" (ngSubmit)="onRegister()">
+        <div class=" form-group input-margin">
+            <label for="name"> Enter your name</label><br>
+            <input type="text" formControlName="name" class="form-control" required>
+
+            <div *ngIf="registerFormControl?.name?.errors?.required && isSubmitted" style="color: red;">
+                Name is required.
+            </div>
+            <div *ngIf="registerFormControl?.name?.errors?.maxlength" style="color: red;">
+                Name must be at least 4 characters long.
+            </div>
+
+        </div>
+        <br>
+        <div class=" form-group input-margin">
+            <label for=""> Enter your Address</label><br>
+            <input type="text" class="form-control" formControlName="address">
+            <br>
+            <div style="color:red" *ngIf="registerFormControl?.address?.errors?.required && isSubmitted">
+                Please enter Address.
+            </div>
+        </div>
+
+        <div class=" form-group input-margin">
+            <label for=""> Enter your Age</label><br>
+            <input type="text" formControlName="age" class="form-control"><br>
+            <div style="color: red;" *ngIf="registerFormControl?.age?.errors?.maxlength?.required && isSubmitted">
+                Name must be at least 2 characters long.
+            </div>
+        </div>
+        <div class=" form-group input-margin">
+            <label for=""> Enter your Mobile numer</label><br>
+            <input type="text" formControlName="mobile" class="form-control"><br>
+            <div style="color: red;" *ngIf="registerFormControl?.mobile?.errors?.minlength?.required && isSubmitted">
+                Name must be at least 10 characters long.
+            </div>
+            {{ registerFormControl.mobile.errors | json}}
+        </div>
+        <div class=" form-group input-margin">
+            <label for=""> Enter your Email Address</label><br>
+            <input type="text" formControlName="email" class="form-control"><br>
+            <!--pre>Touched? {{ register.controls.email.touched }}</pre-->
+            <div style="color: red;" *ngIf="registerFormControl?.email?.errors?.required && isSubmitted">
+                Please enter your email
+            </div>
+        </div>
+        <!-- {{ registerFormControl.email.errors | json}} -->
+        <div class="text-center">
+            <input type="submit" value="sumit" class="px-5 py-3"></div>
+    </form>
+</div>
+<!--------------------------------get data of table through api------------------------------>
+<div class="container">
+    <h2>{{text}}</h2>
+
+    <table style="width: 100%;" class="table">
+        <tr>
+            <th>ID</th>
+            <th>Employee Name</th>
+            <th>Salary</th>
+            <th>Age</th>
+        </tr>
+        <tr *ngFor="let employee of data" style="text-align: center;">
+            <td>{{employee.id}}</td>
+            <td>{{employee.employee_name}}</td>
+            <td>{{employee.employee_salary}}</td>
+            <td>{{employee.employee_age}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<!----------------------------------post data form----------------------------------------->
+<div class="container">
+    <form [formGroup]="post" (ngSubmit)="addAgent()">
+        <div class="form-group input-margin">
+            <label for="fname"> First Name</label><br>
+            <input type="text" id="fname" type="text" formControlName="fname" class="form-control" required><br>
+            <div *ngIf="postFormControl?.fname?.errors?.required && isPost " style="color: red;">
+                Name is required.
+            </div>
+
+        </div>
+
+        <div class="form-group input-margin">
+            <label for="lname">Last Name</label><br>
+            <input type="text" id="lname" type="text" formControlName="lname" class="form-control" required><br>
+            <div *ngIf="postFormControl?.lname?.errors?.required && isPost " style="color: red;">
+                Last name is required.
+            </div>
+        </div>
+
+        <div class="form-group input-margin">
+            <label for="email">Email</label><br>
+            <input type="text" id="email" type="text" formControlName="email" class="form-control" required><br>
+            <div *ngIf="postFormControl?.email?.errors?.required && isPost " style="color: red;">
+                Email is required.
+            </div>
+        </div>
+
+        <div class="form-group input-margin">
+            <label for="password">Password</label><br>
+            <input type="text" id="password" type="text" formControlName="password" class="form-control" required><br>
+            <div *ngIf="postFormControl?.password?.errors?.required && isPost " style="color: red;">
+                Password is required.
+            </div>
+        </div>
+
+        <div class="form-group input-margin">
+            <label for="phone">Phone</label><br>
+            <input type="text" id="phone" type="text" formControlName="phone" class="form-control" required>
+            <div *ngIf="postFormControl?.phone?.errors?.required && isPost" style="color: red;">
+                Phone no. is required.
+            </div>
+        </div>
+        <div class="text-center">
+            <button (click)="addAgent()">Post data</button></div>
+
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>

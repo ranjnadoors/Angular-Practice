@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid #e74c3c !important; 
+  }
+  .input-margin{
+      margin: 20px 10px;
+  }
+  .lable-text{
+      margin: 0px 10px;
+  }
+  .table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
